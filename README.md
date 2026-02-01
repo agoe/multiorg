@@ -1,21 +1,18 @@
-# 🚀 Multiboard - Open-Source Kanban for Modern Teams
+# 🚀 MultiOrg 
 
 **Streamline your workflow with intuitive task management and real-time collaboration. Built for teams who value simplicity and control.**
 
 ---
 
-> **Multiboard is now part of [Better Stack](https://better-stack.ai/)** — ship full-stack features faster with production-ready plugins that generate database schemas, API routes, and pages for Next.js, TanStack Start, and React Router.
-
----
 
 ## 🎨 Screenshots
 
 
 ### Dark Mode
-![Multiboard Dark Mode](./public/example-dark.png)
+![MultiOrgDark Mode](./public/example-dark.png)
 
 ### Light Mode  
-![Multiboard Light Mode](./public/example-light.png)
+![MultiOrg Light Mode](./public/example-light.png)
 
 
 ## ✨ Why Open-Source Kanban?
@@ -71,8 +68,8 @@
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/olliethedev/multiboard.git
-cd multiboard
+git clone https://github.com/agoe/multiorg.git
+cd multiorg
 npm install
 ```
 
@@ -82,7 +79,7 @@ Create a `.env.local` or `.env` file:
 
 ```env
 # Database
-DATABASE_URL="postgresql://username:password@localhost:5432/multiboard"
+DATABASE_URL="postgresql://username:password@localhost:5432/multiorg"
 
 # Auth
 BETTER_AUTH_SECRET="your-secret-key-here"
@@ -121,17 +118,13 @@ Admin users will see special UI related to blog posts, like editing the blog pos
 
 ## 📚 API Documentation
 
-Multiboard automatically generates comprehensive API documentation:
+MultiOrg automatically generates comprehensive API documentation:
 
 - **Interactive API Docs**: Visit `/api/openapi/reference` for full API exploration
 - **OpenAPI Schema**: Available at `/api/openapi/openapi.json`
 - **Type-Safe Hooks**: Auto-generated React Query hooks for seamless frontend integration
 
 ## 🚀 Deployment
-
-### Vercel (Recommended)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/olliethedev/multiboard)
 
 1. Add environment variables
 2. Deploy with the custom build command: `npm run vercel:build`
@@ -140,7 +133,7 @@ Multiboard automatically generates comprehensive API documentation:
 ## 🏗️ Project Structure
 
 ```
-multiboard/
+multiorg/
 ├── app/                   # Next.js app directory
 │   ├── boards/            # Kanban board pages
 │   ├── posts/             # Blog pages
@@ -180,12 +173,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Star History
 
-If you find Multiboard useful, please consider giving it a star on GitHub! ⭐
+If you find MultiOrg useful, please consider giving it a star on GitHub! ⭐
 
 ## 📧 Support
 
-- **Issues**: Report bugs or request features via [GitHub Issues](https://github.com/olliethedev/multiboard/issues)
+- **Issues**: Report bugs or request features via [GitHub Issues](https://github.com/agoe/issues)
 
 ---
 
-**Ready to streamline your team's workflow?** [Try Multiboard now](https://multiboard.dev) or [star the repo](https://github.com/olliethedev/multiboard) to show your support! 🚀
+**Ready to streamline your team's workflow?** [Try MultiOrg now](
+https://multiorg.digital) or [star the repo](https://github.com/agoe to show your support! 🚀
+git fetch upstream
+git merge upstream/main   # oder rebase, cherry-pick, etc.
+git push origin main
