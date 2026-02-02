@@ -1,5 +1,5 @@
-ARG BETTER_AUTH_SECRET=my-strong-random-secret-here-2026  # openssl rand -base64 32
-ARG BETTER_AUTH_URL=http://localhost:3000
+ARG BETTER_AUTH_SECRET=my-strong-random-secret-here-2026
+ARG BETTER_AUTH_URL=http://91.98.80.79:3000
 
 # ----------------- 1️⃣ Dependencies -----------------
 FROM node:20-alpine AS deps
