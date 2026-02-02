@@ -15,6 +15,7 @@ const EMAIL_LINK_BASE_URL = process.env.BETTER_AUTH_URL || "https://www.multiboa
 
 
 export const auth = betterAuth({
+	secret: "my-strong-random-secret-here-2026", //process.env.BETTER_AUTH_SECRET ,
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
