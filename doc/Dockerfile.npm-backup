@@ -1,0 +1,44 @@
+# ----------------- 1️⃣ Dependencies -----------------
+FROM node:20-alpine AS deps
+WORKDIR /app
+
+# Kopiere nur package.json + lockfile, um Caching zu nutzen
+COPY package.json package-lock.json* ./
+
+# Installiere Dependencies
+RUN npm ci
+
+# ----------------- 2️⃣ Build -----------------
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# Kopiere Dependencies
+COPY --from=deps /app/node_modules ./node_modules
+
+# Kopiere den gesamten App-Code
+COPY . .
+
+# ZenStack generieren (erstellt schema.prisma + Prisma Client)
+RUN npm run zenstack:generate
+
+# Next.js Build
+RUN npm run build
+
+# ----------------- 3️⃣ Production Runner -----------------
+FROM node:20-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+# Optional: unprivileged user für Sicherheit
+RUN addgroup -g 1001 -S nodejs \
+    && adduser -S nextjs -u 1001 -G nodejs
+
+# Kopiere alles aus dem Builder
+COPY --from=builder /app ./
+
+USER nextjs
+EXPOSE 3000
+
+# ----------------- 4️⃣ Start Command -----------------
+CMD ["npm", "start"]
