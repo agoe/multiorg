@@ -5,16 +5,6 @@
 ---
 
 
-## 🎨 Screenshots
-
-
-### Dark Mode
-![MultiOrgDark Mode](./public/example-dark.png)
-
-### Light Mode  
-![MultiOrg Light Mode](./public/example-light.png)
-
-
 ## ✨ Why Open-Source Kanban?
 
 - **🔓 Complete Control**: Own your data, customize without limits, deploy anywhere
@@ -39,23 +29,6 @@
 - **🚀 One-Click Deploy**: Easy deployment to Vercel or your own infrastructure
 - **📝 Blog Post Management**: Full CRUD operations for blog posts with rich text editing for site admin users
 
-## 🛠️ Technology Stack
-
-| Technology | Purpose | Link |
-|------------|---------|------|
-| **better-auth** | Authentication and authorization | [better-auth.com](https://www.better-auth.com/) |
-| **better-auth-ui** | Plug and play auth UI components | [better-auth-ui.com](https://better-auth-ui.com/) |
-| **shadcn/ui** | Beautifully-designed, accessible components | [ui.shadcn.com](https://ui.shadcn.com/) |
-| **Prisma** | PostgreSQL ORM and database toolkit | [prisma.io](https://www.prisma.io/postgres) |
-| **ZenStack** | TypeScript toolkit enhancing Prisma with authorization and auto-generated APIs | [zenstack.dev](https://zenstack.dev/) |
-| **TanStack Query** | Powerful data-fetching and state management | [tanstack.com/query](https://tanstack.com/query/latest/docs/framework/react/overview) |
-| **Scalar** | Beautiful API documentation | [scalar.com](https://guides.scalar.com/scalar/scalar-api-references/integrations/nextjs) |
-| **AutoForm** | Generate forms from Zod schemas | [github.com/vantezzen/autoform](https://github.com/vantezzen/autoform) |
-| **Minimal Tiptap** | Clean and minimal rich text editor | [github.com/Aslam97/shadcn-minimal-tiptap](https://github.com/Aslam97/shadcn-minimal-tiptap) |
-| **nuqs** | Type-safe search params state manager | [nuqs.47ng.com](https://nuqs.47ng.com/) |
-| **Vercel Blob** | Scalable file and image storage | [vercel.com/docs/vercel-blob](https://vercel.com/docs/vercel-blob) |
-| **Resend** | Modern email delivery platform | [resend.com](https://resend.com/) |
-| **DiceUI Kanban** | Beautiful kanban component library | [diceui.com/docs/components/kanban](https://www.diceui.com/docs/components/kanban) |
 
 ## 🚀 Quick Start
 
@@ -149,27 +122,8 @@ multiorg/
 └── schema.zmodel          # ZenStack schema with access policies
 ```
 
-## 🤝 Contributing
 
-We love contributions! Here's how to get started:
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes**
-4. **Run tests**: `npm run lint`
-5. **Commit your changes**: `git commit -m 'Add amazing feature'`
-6. **Push to the branch**: `git push origin feature/amazing-feature`
-7. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow the existing code style
-- Update documentation as needed
-- Ensure all CI checks pass
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Star History
 

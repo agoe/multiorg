@@ -1,0 +1,2 @@
+docker exec -it --user 0 multiorg sh
+pnpm zenstack:generate
