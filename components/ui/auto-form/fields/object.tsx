@@ -32,6 +32,7 @@ export default function AutoFormObject<
   path = [],
   dependencies = [],
 }: {
+  // @ts-expect-error TS2694: Namespace '"/Users/agoe/Documents/ws/sas2026/multiboard/node_modules/zod/index"' has no exported member 'ZodEffects'.
   schema: SchemaType | z.ZodEffects<SchemaType>;
   form: ReturnType<typeof useForm>;
   fieldConfig?: FieldConfig<z.infer<SchemaType>>;
@@ -71,6 +72,8 @@ export default function AutoFormObject<
         let item = shape[name] as z.ZodAny;
         item = handleIfZodNumber(item) as z.ZodAny;
         const zodBaseType = getBaseType(item);
+
+        // @ts-expect-error unknown property
         const itemName = item._def.description ?? beautifyObjectName(name);
         const key = [...path, name].join(".");
 

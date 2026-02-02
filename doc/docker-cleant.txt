@@ -1,0 +1,11 @@
+#!/bin/bash
+# Stop all running containers
+docker ps -q | xargs -r docker stop
+
+# Remove all containers (stopped or running)
+docker ps -aq | xargs -r docker rm
+
+echo "✅ All Docker containers stopped and removed."
+
+docker images -q | xargs -r docker rmi -f
+docker volume ls -q | xargs -r docker volume rm

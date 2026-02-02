@@ -27,8 +27,10 @@ const formatActions: ListItem[] = [
       </svg>
     ),
     isActive: (editor) => editor.isActive("orderedList"),
+    // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleOrderedList().run(),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
       editor.can().chain().focus().toggleOrderedList().run(),
     shortcuts: ["mod", "shift", "7"],
   },
@@ -37,8 +39,10 @@ const formatActions: ListItem[] = [
     label: "Bullet list",
     icon: <ListBulletIcon className="size-5" />,
     isActive: (editor) => editor.isActive("bulletList"),
+    // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleBulletList().run(),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
       editor.can().chain().focus().toggleBulletList().run(),
     shortcuts: ["mod", "shift", "8"],
   },

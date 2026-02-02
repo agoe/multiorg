@@ -1,0 +1,20 @@
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.6/install.sh | bash
+
+terminal neu starten oder
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+nvm --version
+
+nvm install 20
+node -v
+
+node 20 als standard
+nvm alias default 20
+
+node -v
+npm -v
+
+Optional: .nvmrc Datei im Projekt:
+echo "20" > .nvmrc
+nvm use

@@ -52,7 +52,7 @@ export function HeroSectionOne() {
           }}
           className="relative mx-auto max-w-xl py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
         >
-            Optimiere Deinen Arbeitsablauf mit intuitivem Aufgabenmanagement und einfacher Zusammenarbeit
+            Test Version für Haniga.de
         </motion.p>
         <motion.div
           initial={{

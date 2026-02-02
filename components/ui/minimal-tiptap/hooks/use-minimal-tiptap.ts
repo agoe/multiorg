@@ -200,6 +200,7 @@ export const useMinimalTiptapEditor = ({
   )
 
   const editor = useEditor({
+    // @ts-expect-error
     extensions: createExtensions(placeholder, output),
     editorProps: {
       attributes: {

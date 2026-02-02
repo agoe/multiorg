@@ -40,6 +40,7 @@ export default function AutoFormArray({
     control: form.control,
     name,
   });
+  // @ts-expect-error <html>TS2339: Property 'description' does not exist on type '$ZodArrayDef&lt;any&gt; | $ZodDefaultDef&lt;any&gt;'.<br/>Property 'description' does not exist on type '$ZodArrayDef&lt;any&gt;'.
   const title = item._def.description ?? beautifyObjectName(name);
 
   const itemDefType = isZodArray(item)

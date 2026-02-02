@@ -1,15 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { FeaturesSection } from "@/components/marketing/features-section";
+//import { FeaturesSection } from "@/components/marketing/features-section";
 import { HeroSectionOne } from "@/components/marketing/hero-section-one2";
-import { TechStackSection } from "@/components/marketing/tech-stack-section";
-import { CtaSection } from "@/components/marketing/cta-section";
+//import { TechStackSection } from "@/components/marketing/tech-stack-section";
+//import { CtaSection } from "@/components/marketing/cta-section";
 import { LatestPostsSection } from "@/components/marketing/latest-posts-section";
 import { Footer } from "@/components/footer2";
 
 
-function Callout() {
+/*function Callout() {
   return (
     <div className="relative mx-auto max-w-2xl mt-6 px-4">
       <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-l-4 border-primary rounded-r-lg p-4">
@@ -31,7 +31,7 @@ function Callout() {
       </div>
     </div>
   );
-}
+}*/
 
 function MultiboardLanding() {
   return (

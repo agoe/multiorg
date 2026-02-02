@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Twitter, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Twitter,  } from "lucide-react";
+//import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 export function Footer() {

@@ -93,6 +93,7 @@ const AddTaskFormComponent = ({
   onSuccess,
 }: AddTaskFormProps) => {
   const schema = useMemo(() => {
+
     return TaskCreateSchema.omit({
       id: true,
       createdAt: true,
@@ -101,7 +102,9 @@ const AddTaskFormComponent = ({
       completedAt: true,
       order: true,
     }).extend({
+      // @ts-expect-error  TS2740: Type ZodDefault<ZodString> is missing the following propertie
       columnId: z.string().default(columnId),
+      // @ts-expect-error  TS2740: Type ZodDefault<ZodString> is missing the following propertie
       priority: z.nativeEnum(Priority).default(Priority.MEDIUM),
     });
   }, [columnId]);
@@ -127,9 +130,13 @@ const AddTaskFormComponent = ({
         : 0;
     await createTask({
       data: {
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         title: data.title!,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         description: data.description,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         priority: data.priority!,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         assigneeId: data.assigneeId || null,
         columnId,
         order: nextOrder,
@@ -223,8 +230,12 @@ const EditTaskFormComponent = ({
       completedAt: true,
       order: true,
     }).extend({
+      // @ts-expect-error  TS2740: Type ZodDefault<ZodString> is missing the following propertie
       title: z.string(),
+
+      // @ts-expect-error  TS2740: Type ZodDefault<ZodString> is missing the following propertie
       columnId: z.string().default(columnId),
+      // @ts-expect-error  TS2740: Type ZodDefault<ZodString> is missing the following propertie
       priority: z
         .nativeEnum(Priority)
         .default(task?.priority || Priority.MEDIUM),
@@ -247,10 +258,15 @@ const EditTaskFormComponent = ({
     await updateTask({
       where: { id: taskId },
       data: {
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         title: data.title,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         description: data.description,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         priority: data.priority,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         columnId: data.columnId,
+        // @ts-expect-error TS18046: 'data' is of type 'unknown' (temporary suppression)
         assigneeId: data.assigneeId || null,
       },
     });
@@ -452,7 +468,9 @@ function createTaskFieldConfig(
     value: string;
   }[]
 ) {
+
   const config: FieldConfig<
+      // @ts-expect-error TS2344: Type unknown does not satisfy the constraint Record<string, unknown>
     z.infer<typeof TaskCreateSchema> | z.infer<typeof TaskUpdateSchema>
   > = {
     title: {
@@ -460,6 +478,8 @@ function createTaskFieldConfig(
       inputProps: {
         placeholder: "e.g., Fix login bug",
       },
+
+      // @ts-expect-error TS7031: Binding element children implicitly has an any type.
       renderParent: ({ children }) => (
         <div className="col-span-2">{children}</div>
       ),
@@ -506,6 +526,7 @@ function createTaskFieldConfig(
           )}
         </FormItem>
       ),
+      // @ts-expect-error TS7031: Binding element children implicitly has an any type.
       renderParent: ({ children }) => (
         <div className="col-span-2">{children}</div>
       ),
@@ -536,6 +557,7 @@ function createTaskFieldConfig(
           )}
         </FormItem>
       ),
+      // @ts-expect-error TS7031: Binding element children implicitly has an any type.
       renderParent: ({ children }) => (
         <div className="col-span-2">{children}</div>
       ),

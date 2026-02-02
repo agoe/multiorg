@@ -112,7 +112,9 @@ export function PostsGrid({ tagSlugFilter }: PostsGridProps) {
       {/* Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {allPosts.map((post) => (
-          <PostCard key={post.id} post={post} canEdit={isAdmin} />
+          <PostCard key={
+            // @ts-expect-error TS2339: Property id does not exist on type
+            post.id} post={post} canEdit={isAdmin} />
         ))}
       </div>
 

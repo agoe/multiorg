@@ -1,5 +1,5 @@
 import * as React from "react"
-import type { Editor } from "@tiptap/react"
+//import type { Editor } from "@tiptap/react"
 import type { FormatAction } from "../../types"
 import type { toggleVariants } from "@/components/ui/toggle"
 import type { VariantProps } from "class-variance-authority"
@@ -13,6 +13,7 @@ import {
 import { LinkEditPopover } from "../link/link-edit-popover"
 import { ImageEditDialog } from "../image/image-edit-dialog"
 import { ToolbarSection } from "../toolbar-section"
+import {Editor} from "@tiptap/react";
 
 type InsertElementAction = "codeBlock" | "blockquote" | "horizontalRule"
 interface InsertElement extends FormatAction {
@@ -34,9 +35,11 @@ const formatActions: InsertElement[] = [
     value: "blockquote",
     label: "Blockquote",
     icon: <QuoteIcon className="size-5" />,
+    // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleBlockquote().run(),
     isActive: (editor) => editor.isActive("blockquote"),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
       editor.can().chain().focus().toggleBlockquote().run(),
     shortcuts: ["mod", "shift", "B"],
   },

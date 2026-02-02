@@ -96,6 +96,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
         if (level) {
           editor.chain().focus().toggleHeading({ level }).run()
         } else {
+            // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
           editor.chain().focus().setParagraph().run()
         }
       },

@@ -7,6 +7,7 @@ import { BoardUpdateWithoutRefineSchema } from "@zenstackhq/runtime/zod/models";
 import { useUpdateBoard, useFindUniqueBoard } from "@/hooks/model";
 import { FIND_UNIQUE_BOARD } from "@/lib/constants";
 import { toast } from "sonner";
+import { Prisma } from "@zenstackhq/runtime/models";
 
 const boardUpdateSchema = BoardUpdateWithoutRefineSchema.omit({
   id: true,
@@ -44,7 +45,7 @@ export function EditBoardForm({
   const onSubmit = async (data: z.infer<typeof boardUpdateSchema>) => {
     await updateBoard({
       where: { id: boardId },
-      data,
+      data :data  as Prisma.BoardUncheckedUpdateInput,
     });
     toast.success("Board updated successfully");
     onSuccess();

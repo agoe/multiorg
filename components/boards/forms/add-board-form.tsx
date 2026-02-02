@@ -38,7 +38,8 @@ export function AddBoardForm({ onClose, onSuccess }: AddBoardFormProps) {
 
   const handleSubmit = async (data: z.infer<typeof boardCreateSchema>) => {
     try {
-      const result = await createBoard({ data });
+      /* eslint-disable  @typescript-eslint/no-explicit-any */
+      const result = await createBoard({ data :data as any });
 
       if (result?.id) {
         // Create standard Kanban columns

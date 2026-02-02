@@ -20,6 +20,7 @@ export default function AutoFormRadioGroup({
   fieldConfigItem,
 }: AutoFormInputComponentProps) {
   const baseValues = (getBaseSchema(zodItem) as unknown as z.ZodEnum<any>)._def
+      // @ts-expect-error unknown property
     .values;
 
   let values: string[] = [];

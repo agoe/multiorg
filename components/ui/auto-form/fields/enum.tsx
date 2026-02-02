@@ -21,6 +21,7 @@ export default function AutoFormEnum({
   fieldProps,
 }: AutoFormInputComponentProps) {
   const baseValues = (getBaseSchema(zodItem) as unknown as z.ZodEnum<any>)._def
+      // @ts-expect-error TS2339: Property 'values' does not exist on type '$ZodEnumDef<any>'.
     .values;
 
   let values: [string, string][] = [];

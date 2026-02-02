@@ -1,0 +1,42 @@
+hritt-für-Schritt: Download (Backup machen)
+
+SSH auf deinen Hetzner-Server (z. B. ssh root@deine-ip)
+Finde den Postgres-Container in Coolify
+Normalerweise heißt er coolify-db oder postgres-xxx (schau in Coolify → Resources → deine DB → Container Name).
+Mach ein Backup mit pg_dump (am einfachsten & schnellsten):
+
+Für eine einzelne DB (meist deine App-DB):
+
+Bashdocker exec -t coolify-db pg_dump -U postgres -d deine_db_name --format=custom --file=/tmp/backup.dump
+(ersetze deine_db_name durch den echten Namen, z. B. app_db – schau in Coolify unter DB-Details nach User/DB-Name/Passwort)
+
+Für alle DBs (inkl. Rollen/Passwörter – empfohlen für volle Migration):
+
+Bashdocker exec -t coolify-db pg_dumpall -U postgres --clean --if-exists | gzip > /tmp/full-backup.sql.gz
+
+Oder custom Format (komprimiert, schneller Restore):
+
+Bashdocker exec -t coolify-db pg_dumpall -U postgres -Fc | gzip > /tmp/full-backup.dump.gz
+
+Datei auf deinen Mac runterladen (vom Server):
+Bashscp root@deine-server-ip:/tmp/full-backup.dump.gz ~/Downloads/→ Jetzt hast du die DB lokal/sicher!
+Optional: Automatisiere es
+In Coolify gibt's unter Databases → Backups oft einen Button "Create Backup"
+→ das macht pg_dump intern und bietet "Download"-Button.
+Nutze das, wenn verfügbar – super easy!
+
+Beim neuen Server (Neustart / Migration / Neuer CX33)
+
+Neuen Server erstellen (z. B. mit Snapshot vom alten, oder frisch + Coolify neu installieren).
+Coolify einrichten + Postgres-Service deployen (gleiche Version!).
+Backup hochladen:
+Bashscp ~/Downloads/full-backup.dump.gz root@neue-ip:/tmp/
+
+Restore (Beispiel für pg_dumpall custom):
+Bashgunzip -c /tmp/full-backup.dump.gz | docker exec -i coolify-db pg_restore -U postgres --verbose --clean --if-exists --no-owner --no-privileges -d postgres
+
+Oder für einzelne DB:
+Bashdocker exec -i coolify-db pg_restore -U postgres -d deine_db_name --clean --verbose /tmp/backup.dump
+--clean löscht alte Objekte → vermeidet Konflikte.
+
+Bei Fehlern: --if-exists hilft.

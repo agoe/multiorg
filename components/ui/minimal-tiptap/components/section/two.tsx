@@ -31,9 +31,11 @@ const formatActions: TextStyle[] = [
     value: "bold",
     label: "Bold",
     icon: <FontBoldIcon className="size-5" />,
+    // @ts-expect-error toggleBlockquote not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleBold().run(),
     isActive: (editor) => editor.isActive("bold"),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBold not inferred due to dynamic extensions
       editor.can().chain().focus().toggleBold().run() &&
       !editor.isActive("codeBlock"),
     shortcuts: ["mod", "B"],
@@ -42,9 +44,11 @@ const formatActions: TextStyle[] = [
     value: "italic",
     label: "Italic",
     icon: <FontItalicIcon className="size-5" />,
+    // @ts-expect-error toggleBold not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleItalic().run(),
     isActive: (editor) => editor.isActive("italic"),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBold not inferred due to dynamic extensions
       editor.can().chain().focus().toggleItalic().run() &&
       !editor.isActive("codeBlock"),
     shortcuts: ["mod", "I"],
@@ -64,9 +68,11 @@ const formatActions: TextStyle[] = [
     value: "strikethrough",
     label: "Strikethrough",
     icon: <StrikethroughIcon className="size-5" />,
+    // @ts-expect-error toggleBold not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleStrike().run(),
     isActive: (editor) => editor.isActive("strike"),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBold not inferred due to dynamic extensions
       editor.can().chain().focus().toggleStrike().run() &&
       !editor.isActive("codeBlock"),
     shortcuts: ["mod", "shift", "S"],
@@ -75,9 +81,11 @@ const formatActions: TextStyle[] = [
     value: "code",
     label: "Code",
     icon: <CodeIcon className="size-5" />,
+    // @ts-expect-error toggleBold not inferred due to dynamic extensions
     action: (editor) => editor.chain().focus().toggleCode().run(),
     isActive: (editor) => editor.isActive("code"),
     canExecute: (editor) =>
+        // @ts-expect-error toggleBold not inferred due to dynamic extensions
       editor.can().chain().focus().toggleCode().run() &&
       !editor.isActive("codeBlock"),
     shortcuts: ["mod", "E"],

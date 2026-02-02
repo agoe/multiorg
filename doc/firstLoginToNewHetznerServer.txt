@@ -1,0 +1,7 @@
+ssh root@DEINE_VPS_IP
+apt update && apt upgrade -y
+reboot
+ssh root@DEINE_VPS_IP
+curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
+Browser:
+http://VPS_IP:8000

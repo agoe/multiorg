@@ -1,0 +1,3 @@
+TCP 22 → deine IP
+TCP 80/443 → alle
+ICMP → alle (optional, aber praktisch und sicher)

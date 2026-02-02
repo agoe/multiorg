@@ -1,0 +1,40 @@
+services:
+  coolify:
+    image: coollabsio/coolify:${TAG:-latest}
+    container_name: coolify
+    restart: always
+    ports:
+      - "8000:3000"
+    volumes:
+      - 'coolify-db:/app/db'
+      - 'coolify-ssl-certs:/app/ssl'
+      - 'coolify-letsencrypt:/etc/letsencrypt'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    env_file:
+      - '.env'
+    depends_on:
+      - coolify-redis
+    networks:
+      - coolify-network
+
+  coolify-redis:
+    image: redis:7-alpine
+    container_name: coolify-redis
+    restart: always
+    volumes:
+      - coolify-redis-data:/data
+    networks:
+      - coolify-network
+
+volumes:
+  coolify-db:
+  coolify-ssl-certs:
+  coolify-letsencrypt:
+  coolify-redis-data:
+
+networks:
+  coolify-network:
+
+
+docker compose down
+docker compose up -d

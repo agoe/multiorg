@@ -6,6 +6,7 @@ import { ColumnCreateScalarSchema } from "@zenstackhq/runtime/zod/models";
 import AutoForm, { AutoFormSubmit } from "@/components/ui/auto-form";
 import { useCreateColumn, useFindUniqueBoard } from "@/hooks/model";
 import { FIND_UNIQUE_BOARD } from "@/lib/constants";
+import {Prisma} from "@zenstackhq/runtime/models";
 
 const columnCreateSchema = ColumnCreateScalarSchema.omit({
   id: true,
@@ -42,12 +43,13 @@ export function AddColumnForm({
       : 0;
 
   const onSubmit = async (data: z.infer<typeof columnCreateSchema>) => {
+    const payload = {
+      ...(data as Prisma.ColumnUncheckedCreateInput),  // or as Record<string, any>
+      boardId,
+      order: nextOrder,
+    } as Prisma.ColumnUncheckedCreateInput;
     await createColumn({
-      data: {
-        ...data,
-        boardId,
-        order: nextOrder,
-      },
+      data: payload,
     }, {
       onSuccess: () => {
         onSuccess();

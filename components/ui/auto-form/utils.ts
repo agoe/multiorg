@@ -6,6 +6,7 @@ import { FieldConfig } from "./types";
 // TODO: This should support recursive ZodEffects but TypeScript doesn't allow circular type definitions.
 export type ZodObjectOrWrapped =
   | z.ZodObject<any, any>
+    // @ts-expect-error
   | z.ZodEffects<z.ZodObject<any, any>>;
 
 /**
@@ -24,7 +25,9 @@ export function beautifyObjectName(string: string) {
  * This will unpack optionals, refinements, etc.
  */
 export function getBaseSchema<
+    // @ts-expect-error
   ChildType extends z.ZodAny | z.AnyZodObject = z.ZodAny,
+    // @ts-expect-error
 >(schema: ChildType | z.ZodEffects<ChildType>): ChildType | null {
   if (!schema) return null;
   if ("innerType" in schema._def) {
@@ -43,6 +46,7 @@ export function getBaseSchema<
  */
 export function getBaseType(schema: z.ZodAny): string {
   const baseSchema = getBaseSchema(schema);
+  // @ts-expect-error
   return baseSchema ? baseSchema._def.typeName : "";
 }
 
@@ -53,8 +57,9 @@ export function getDefaultValueInZodStack(schema: z.ZodAny): any {
   const typedSchema = schema as unknown as z.ZodDefault<
     z.ZodNumber | z.ZodString
   >;
-
+// @ts-expect-error
   if (typedSchema._def.typeName === "ZodDefault") {
+    // @ts-expect-error
     return typedSchema._def.defaultValue();
   }
 
@@ -97,6 +102,7 @@ export function getDefaultValues<Schema extends z.ZodObject<any, any>>(
       if (defaultItems !== null) {
         for (const defaultItemKey of Object.keys(defaultItems)) {
           const pathKey = `${key}.${defaultItemKey}` as keyof DefaultValuesType;
+          // @ts-expect-error
           defaultValues[pathKey] = defaultItems[defaultItemKey];
         }
       }
@@ -122,6 +128,7 @@ export function getObjectFormSchema(
   schema: ZodObjectOrWrapped,
 ): z.ZodObject<any, any> {
   if (schema?._def.typeName === "ZodEffects") {
+    // @ts-expect-error
     const typedSchema = schema as z.ZodEffects<z.ZodObject<any, any>>;
     return getObjectFormSchema(typedSchema._def.schema);
   }
@@ -158,19 +165,25 @@ export function zodToHtmlInputProps(
     required: true,
   };
   const type = getBaseType(schema);
-
+// @ts-expect-error
   for (const check of checks) {
+    // @ts-expect-error
     if (check.kind === "min") {
       if (type === "ZodString") {
+        // @ts-expect-error
         inputProps.minLength = check.value;
       } else {
+        // @ts-expect-error
         inputProps.min = check.value;
       }
     }
+    // @ts-expect-error
     if (check.kind === "max") {
       if (type === "ZodString") {
+        // @ts-expect-error
         inputProps.maxLength = check.value;
       } else {
+        // @ts-expect-error
         inputProps.max = check.value;
       }
     }

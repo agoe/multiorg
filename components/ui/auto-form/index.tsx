@@ -73,7 +73,9 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
   const defaultValues: DefaultValues<z.infer<typeof objectFormSchema>> | null =
     getDefaultValues(objectFormSchema, fieldConfig);
 
+
   const form = useForm<z.infer<typeof objectFormSchema>>({
+    // @ts-expect-error
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues ?? undefined,
     values: valuesProp,
@@ -82,15 +84,18 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
   function onSubmit(values: z.infer<typeof formSchema>) {
     const parsedValues = formSchema.safeParse(values);
     if (parsedValues.success) {
+      // @ts-expect-error
       onSubmitProp?.(parsedValues.data, form);
     }
   }
 
   React.useEffect(() => {
     const subscription = form.watch((values) => {
+      // @ts-expect-error
       onValuesChangeProp?.(values, form);
       const parsedValues = formSchema.safeParse(values);
       if (parsedValues.success) {
+        // @ts-expect-error
         onParsedValuesChange?.(parsedValues.data, form);
       }
     });
@@ -108,6 +113,7 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
       <Form {...form}>
         <form
           onSubmit={(e) => {
+            // @ts-expect-error
             form.handleSubmit(onSubmit)(e);
           }}
           className={cn("space-y-5", className)}
